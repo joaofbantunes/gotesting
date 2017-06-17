@@ -26,14 +26,14 @@ func (app *App) Run() {
 }
 
 func (app *App) initializeRoutes() {
-	app.Router.HandleFunc("/", Logger(index)).Methods("GET")
-	app.Router.HandleFunc("/bye", Logger(bye)).Methods("GET")
+	app.Router.HandleFunc("/", Logger(app.index)).Methods("GET")
+	app.Router.HandleFunc("/bye", Logger(app.bye)).Methods("GET")
 }
 
-func index(w http.ResponseWriter, r *http.Request) {
+func (app *App) index(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "Welcome!")
 }
 
-func bye(w http.ResponseWriter, r *http.Request) {
+func (app *App) bye(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "Bye!")
 }
